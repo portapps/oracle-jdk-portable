@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="oracle-jdk" basedir=".">
+
+  <dirname property="app.basedir" file="${ant.file.oracle-jdk}"/>
+  <property name="build.properties" value="${app.basedir}/build.properties"/>
+  <property file="${build.properties}"/>
+
+  <!-- Load Portapps core build -->
+  <property name="core.basedir" location="${app.basedir}\${core.dir}"/>
+  <fail unless="core.basedir" message="Core directory '${core.basedir}' not found in ${core.basedir}"/>
+  <echo message="Core found in ${core.basedir}" level="debug"/>
+
+  <!-- Import build-app.xml  -->
+  <import file="${core.basedir}\.build\build-app.xml"/>
+
+  <!-- Targets -->
+  <target name="release" depends="release.app" description="Release"/>
+
+  <target name="prepare">
+    <echo message="Preparing release..."/>
+
+    <if>
+      <matches string="${atf.assertextract}" pattern="^.+111$"/>
+      <then>
+        <sevenzip-ax src="${extract.path}\${atf.assertextract}" dest="${extract.path}"/>
+        <assertfile file="${extract.path}\tools.zip"/>
+      </then>
+    </if>
+
+    <sevenzip-ax src="${extract.path}\tools.zip" dest="${extract.path}\jdk"/>
+    <assertfile file="${extract.path}\jdk\bin\java.exe"/>
+
+    <for param="file">
+      <path>
+        <fileset dir="${extract.path}\jdk" includes="**/*.pack"/>
+      </path>
+      <sequential>
+        <var name="file.pack.dir" unset="true"/>
+        <var name="file.pack.basename" unset="true"/>
+        <var name="file.pack.jar" unset="true"/>
+        <dirname property="file.pack.dir" file="@{file}"/>
+        <basename property="file.pack.basename" file="@{file}" suffix=".pack"/>
+        <property name="file.pack.jar" value="${file.pack.basename}.jar"/>
+        <exec executable="${extract.path}\jdk\bin\unpack200.exe" dir="${file.pack.dir}" failonerror="true">
+          <arg value="-r"/>
+          <arg value="@{file}"/>
+          <arg value="${file.pack.jar}"/>
+        </exec>
+      </sequential>
+    </for>
+
+    <property name="extract.path2" value="${tmp.path}\extract2"/>
+    <move todir="${tmp.path}\extract2">
+      <fileset dir="${extract.path}\jdk"/>
+    </move>
+    <delete dir="${extract.path}"/>
+    <move todir="${extract.path}">
+      <fileset dir="${extract.path2}"/>
+    </move>
+  </target>
+
+</project>
