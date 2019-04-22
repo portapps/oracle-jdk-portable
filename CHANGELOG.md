@@ -1,5 +1,9 @@
 # Changelog
 
+## 8u212-4 (2019/04/23)
+
+* Oracle JDK 8u212
+
 ## 8u211-3 (2019/04/18)
 
 * Oracle JDK 8u211
