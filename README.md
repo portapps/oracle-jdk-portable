@@ -12,13 +12,15 @@
 
 ## Notice of Non-Affiliation and Disclaimer
 
-Portapps is not affiliated, associated, authorized, endorsed by, or in any way officially connected with Oracle, or any of its subsidiaries or its affiliates. The official Oracle website can be found at https://www.oracle.com.
+Portapps is not affiliated, associated, authorized, endorsed by, or in any way officially connected with Oracle™, or any of its subsidiaries or its affiliates.
 
-The name Oracle® as well as related names, marks, emblems and images are registered trademarks of their respective owners.
+The official Oracle™ website can be found at https://www.oracle.com.
+
+The name Oracle™ as well as related names, marks, emblems and images are registered trademarks of their respective owners.
 
 ## About
 
-Oracle JDK portable app made with 🚀 [Portapps](https://portapps.io).<br />
+Oracle™ JDK portable app made with 🚀 [Portapps](https://portapps.io).<br />
 Documentation and downloads can be found on https://portapps.io/app/oracle-jdk-portable/
 
 ## How can I help ?
