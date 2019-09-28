@@ -24,11 +24,11 @@
       <then>
         <property name="extract.path2" value="${tmp.path}\extract2"/>
         <move todir="${tmp.path}\extract2">
-          <fileset dir="${extract.path}\jdk-${app.version}"/>
+          <fileset dir="${extract.path}\jdk-${app.version}" defaultexcludes="no"/>
         </move>
         <delete dir="${extract.path}"/>
         <move todir="${extract.path}">
-          <fileset dir="${extract.path2}"/>
+          <fileset dir="${extract.path2}" defaultexcludes="no"/>
         </move>
       </then>
       <else>
@@ -45,7 +45,7 @@
 
         <for param="file">
           <path>
-            <fileset dir="${extract.path}\jdk" includes="**/*.pack"/>
+            <fileset dir="${extract.path}\jdk" defaultexcludes="no" includes="**/*.pack"/>
           </path>
           <sequential>
             <var name="file.pack.dir" unset="true"/>
@@ -64,11 +64,11 @@
 
         <property name="extract.path2" value="${tmp.path}\extract2"/>
         <move todir="${tmp.path}\extract2">
-          <fileset dir="${extract.path}\jdk"/>
+          <fileset dir="${extract.path}\jdk" defaultexcludes="no"/>
         </move>
         <delete dir="${extract.path}"/>
         <move todir="${extract.path}">
-          <fileset dir="${extract.path2}"/>
+          <fileset dir="${extract.path2}" defaultexcludes="no"/>
         </move>
       </else>
     </if>
