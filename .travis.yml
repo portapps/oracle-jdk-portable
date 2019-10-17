@@ -38,6 +38,8 @@ deploy:
   draft: true
   on:
     tags: false
+    all_branches: true
+    condition: $TRAVIS_BRANCH =~ ^(master|6u|7u|8u|11\.x)$
 
 notifications:
   email:
