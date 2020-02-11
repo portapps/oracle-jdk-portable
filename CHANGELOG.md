@@ -1,5 +1,9 @@
 # Changelog
 
+## 8u241-15 (2020/02/11)
+
+* Include `src.zip`
+
 ## 13.0.2-14 (2020/01/21)
 
 * Oracle JDK 13.0.2
