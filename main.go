@@ -1,14 +1,15 @@
 //go:generate go install -v github.com/josephspurrier/goversioninfo/cmd/goversioninfo
-//go:generate goversioninfo -icon=res/papp.ico
+//go:generate goversioninfo -icon=res/papp.ico -manifest=res/papp.manifest
 package main
 
 import (
 	"fmt"
 
-	. "github.com/portapps/portapps"
-	"github.com/portapps/portapps/pkg/dialog"
-	"github.com/portapps/portapps/pkg/utl"
-	"github.com/portapps/portapps/pkg/win"
+	"github.com/portapps/portapps/v2"
+	"github.com/portapps/portapps/v2/pkg/dialog"
+	"github.com/portapps/portapps/v2/pkg/log"
+	"github.com/portapps/portapps/v2/pkg/utl"
+	"github.com/portapps/portapps/v2/pkg/win"
 	"golang.org/x/sys/windows/registry"
 )
 
@@ -17,7 +18,7 @@ type config struct {
 }
 
 var (
-	app *App
+	app *portapps.App
 	cfg *config
 )
 
@@ -30,8 +31,8 @@ func init() {
 	}
 
 	// Init app
-	if app, err = NewWithCfg("oracle-jdk-portable", "Oracle JDK", cfg); err != nil {
-		Log.Fatal().Err(err).Msg("Cannot initialize application. See log file for more info.")
+	if app, err = portapps.NewWithCfg("oracle-jdk-portable", "Oracle JDK", cfg); err != nil {
+		log.Fatal().Err(err).Msg("Cannot initialize application. See log file for more info.")
 	}
 }
 
@@ -45,21 +46,21 @@ func main() {
 			"Would you like to set JAVA_HOME in your environment ?",
 			dialog.MsgBoxBtnYesNo|dialog.MsgBoxIconQuestion)
 		if err != nil {
-			Log.Fatal().Err(err).Msg("Cannot create dialog box")
+			log.Fatal().Err(err).Msg("Cannot create dialog box")
 		}
 	} else {
 		resp = dialog.MsgBoxSelectYes
 	}
 
 	if resp != dialog.MsgBoxSelectYes {
-		Log.Info().Msg("Skipping setting JAVA_HOME...")
+		log.Info().Msg("Skipping setting JAVA_HOME...")
 		return
 	}
 
-	Log.Info().Msgf("Set JAVA_HOME=%s", utl.PathJoin(app.AppPath))
+	log.Info().Msgf("Set JAVA_HOME=%s", utl.PathJoin(app.AppPath))
 	err = win.SetPermEnv(registry.CURRENT_USER, "JAVA_HOME", utl.PathJoin(app.AppPath))
 	if err != nil {
-		Log.Fatal().Err(err).Msg("Cannot set JAVA_HOME")
+		log.Fatal().Err(err).Msg("Cannot set JAVA_HOME")
 	}
 	win.RefreshEnv()
 }
