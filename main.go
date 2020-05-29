@@ -63,4 +63,6 @@ func main() {
 		log.Fatal().Err(err).Msg("Cannot set JAVA_HOME")
 	}
 	win.RefreshEnv()
+
+	defer app.Close()
 }
