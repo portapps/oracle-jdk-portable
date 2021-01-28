@@ -3,12 +3,7 @@ name: gosum
 on:
   push:
     branches:
-      - 'master'
       - '12.x'
-      - '11.x'
-      - '8u'
-      - '7u'
-      - '6u'
     paths:
       - '.github/workflows/gosum.yml'
       - 'go.mod'
