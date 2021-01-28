@@ -1,5 +1,10 @@
 # Changelog
 
+## 8u281-18 (2021/01/28)
+
+* Oracle JDK 8u281
+* Portapps 3.1.0
+
 ## 11.0.7-17 (2020/04/22)
 
 * Oracle JDK 11.0.7
