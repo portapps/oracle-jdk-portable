@@ -39,6 +39,13 @@
             <assertfile file="${extract.path}\tools.zip"/>
           </then>
         </if>
+        <if>
+          <available file="${extract.path}\.rsrc\1033\JAVA_CAB9\110"/>
+          <then>
+            <sevenzip-ax src="${extract.path}\.rsrc\1033\JAVA_CAB9\110" dest="${extract.path}\jdk"/>
+            <assertfile file="${extract.path}\jdk\src.zip"/>
+          </then>
+        </if>
 
         <sevenzip-ax src="${extract.path}\tools.zip" dest="${extract.path}\jdk"/>
         <assertfile file="${extract.path}\jdk\bin\java.exe"/>
