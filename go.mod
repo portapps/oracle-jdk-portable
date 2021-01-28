@@ -1,8 +1,8 @@
 module github.com/portapps/oracle-jdk-portable
 
-go 1.13
+go 1.15
 
 require (
-	github.com/portapps/portapps/v2 v2.1.2
-	golang.org/x/sys v0.0.0-20200409092240-59c9f1ba88fa
+	github.com/portapps/portapps/v3 v3.1.0
+	golang.org/x/sys v0.0.0-20201116194326-cc9327a14d48
 )
