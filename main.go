@@ -5,11 +5,10 @@ package main
 import (
 	"fmt"
 
-	"github.com/portapps/portapps/v2"
-	"github.com/portapps/portapps/v2/pkg/dialog"
-	"github.com/portapps/portapps/v2/pkg/log"
-	"github.com/portapps/portapps/v2/pkg/utl"
-	"github.com/portapps/portapps/v2/pkg/win"
+	"github.com/portapps/portapps/v3"
+	"github.com/portapps/portapps/v3/pkg/log"
+	"github.com/portapps/portapps/v3/pkg/utl"
+	"github.com/portapps/portapps/v3/pkg/win"
 	"golang.org/x/sys/windows/registry"
 )
 
@@ -41,18 +40,18 @@ func main() {
 	var resp int
 
 	if !cfg.Silent {
-		resp, err = dialog.MsgBox(
+		resp, err = win.MsgBox(
 			fmt.Sprintf("%s portable", app.Name),
 			"Would you like to set JAVA_HOME in your environment ?",
-			dialog.MsgBoxBtnYesNo|dialog.MsgBoxIconQuestion)
+			win.MsgBoxBtnYesNo|win.MsgBoxIconQuestion)
 		if err != nil {
 			log.Fatal().Err(err).Msg("Cannot create dialog box")
 		}
 	} else {
-		resp = dialog.MsgBoxSelectYes
+		resp = win.MsgBoxSelectYes
 	}
 
-	if resp != dialog.MsgBoxSelectYes {
+	if resp != win.MsgBoxSelectYes {
 		log.Info().Msg("Skipping setting JAVA_HOME...")
 		return
 	}
@@ -63,4 +62,6 @@ func main() {
 		log.Fatal().Err(err).Msg("Cannot set JAVA_HOME")
 	}
 	win.RefreshEnv()
+
+	defer app.Close()
 }
