@@ -4,7 +4,7 @@ go 1.21
 
 require (
 	github.com/portapps/portapps/v3 v3.10.0
-	golang.org/x/sys v0.18.0
+	golang.org/x/sys v0.20.0
 )
 
 require (
