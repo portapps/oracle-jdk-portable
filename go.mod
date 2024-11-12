@@ -3,7 +3,7 @@ module github.com/portapps/oracle-jdk-portable
 go 1.23
 
 require (
-	github.com/portapps/portapps/v3 v3.14.1
+	github.com/portapps/portapps/v3 v3.15.0
 	golang.org/x/sys v0.27.0
 )
 
