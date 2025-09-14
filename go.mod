@@ -4,7 +4,7 @@ go 1.24.0
 
 require (
 	github.com/portapps/portapps/v3 v3.16.0
-	golang.org/x/sys v0.32.0
+	golang.org/x/sys v0.36.0
 )
 
 require (
