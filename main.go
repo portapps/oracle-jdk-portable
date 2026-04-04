@@ -1,13 +1,12 @@
 //go:generate go install -v github.com/josephspurrier/goversioninfo/cmd/goversioninfo
-//go:generate goversioninfo -icon=res/papp.ico -manifest=res/papp.manifest
 package main
 
 import (
 	"fmt"
+	"path/filepath"
 
 	"github.com/portapps/portapps/v3"
 	"github.com/portapps/portapps/v3/pkg/log"
-	"github.com/portapps/portapps/v3/pkg/utl"
 	"github.com/portapps/portapps/v3/pkg/win"
 	"golang.org/x/sys/windows/registry"
 )
@@ -56,8 +55,8 @@ func main() {
 		return
 	}
 
-	log.Info().Msgf("Set JAVA_HOME=%s", utl.PathJoin(app.AppPath))
-	err = win.SetPermEnv(registry.CURRENT_USER, "JAVA_HOME", utl.PathJoin(app.AppPath))
+	log.Info().Msgf("Set JAVA_HOME=%s", filepath.Join(app.AppPath))
+	err = win.SetPermEnv(registry.CURRENT_USER, "JAVA_HOME", filepath.Join(app.AppPath))
 	if err != nil {
 		log.Fatal().Err(err).Msg("Cannot set JAVA_HOME")
 	}
