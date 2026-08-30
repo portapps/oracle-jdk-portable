@@ -3,8 +3,8 @@ module github.com/portapps/oracle-jdk-portable
 go 1.26.0
 
 require (
-	github.com/portapps/portapps/v3 v3.18.0
-	golang.org/x/sys v0.46.0
+	github.com/portapps/portapps/v3 v3.19.0
+	golang.org/x/sys v0.47.0
 )
 
 require (
@@ -15,8 +15,8 @@ require (
 	github.com/mattn/go-colorable v0.1.14 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
-	github.com/rs/zerolog v1.35.0 // indirect
-	go.yaml.in/yaml/v3 v3.0.4 // indirect
+	github.com/rs/zerolog v1.35.1 // indirect
+	go.yaml.in/yaml/v3 v3.0.5 // indirect
 )
 
 tool github.com/josephspurrier/goversioninfo/cmd/goversioninfo
